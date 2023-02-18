@@ -12,13 +12,38 @@ import (
 	"github.com/taxio/gqlgen-ent-todo/graph/model"
 )
 
+// CreateUser is the resolver for the createUser field.
+func (r *mutationResolver) CreateUser(ctx context.Context, input model.CreateUserInput) (*model.CreateUserPayload, error) {
+	panic(fmt.Errorf("not implemented: CreateUser - createUser"))
+}
+
 // CreateTodo is the resolver for the createTodo field.
-func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
+func (r *mutationResolver) CreateTodo(ctx context.Context, input model.CreateTodoInput) (*model.CreateTodoPayload, error) {
 	panic(fmt.Errorf("not implemented: CreateTodo - createTodo"))
 }
 
+// UpdateTodo is the resolver for the updateTodo field.
+func (r *mutationResolver) UpdateTodo(ctx context.Context, input model.UpdateTodoInput) (*model.UpdateTodoPayload, error) {
+	panic(fmt.Errorf("not implemented: UpdateTodo - updateTodo"))
+}
+
+// User is the resolver for the user field.
+func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error) {
+	panic(fmt.Errorf("not implemented: User - user"))
+}
+
+// Users is the resolver for the users field.
+func (r *queryResolver) Users(ctx context.Context, first *int, after *string) (*model.UserConnection, error) {
+	panic(fmt.Errorf("not implemented: Users - users"))
+}
+
+// Todo is the resolver for the todo field.
+func (r *queryResolver) Todo(ctx context.Context, id string) (*model.Todo, error) {
+	panic(fmt.Errorf("not implemented: Todo - todo"))
+}
+
 // Todos is the resolver for the todos field.
-func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
+func (r *queryResolver) Todos(ctx context.Context, first *int, after *string) (*model.TodoConnection, error) {
 	panic(fmt.Errorf("not implemented: Todos - todos"))
 }
 
