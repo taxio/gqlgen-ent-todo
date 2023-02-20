@@ -6,8 +6,10 @@ package resolver
 
 import (
 	"context"
+	"errors"
 	"fmt"
 
+	"github.com/go-sql-driver/mysql"
 	"github.com/taxio/gqlgen-ent-todo/ent"
 	qtodo "github.com/taxio/gqlgen-ent-todo/ent/todo"
 	quser "github.com/taxio/gqlgen-ent-todo/ent/user"
@@ -19,6 +21,18 @@ import (
 func (r *mutationResolver) CreateUser(ctx context.Context, input model.CreateUserInput) (*model.CreateUserPayload, error) {
 	newUser, err := r.db.User.Create().SetName(input.Name).Save(ctx)
 	if err != nil {
+		var mysqlErr *mysql.MySQLError
+		if errors.As(err, &mysqlErr) && mysqlErr.Number == 1062 {
+			return &model.CreateUserPayload{
+				Errors: []model.CreateUserError{
+					model.UsernameAlreadyExistsError{
+						Message: fmt.Sprintf("Username \"%s\" already exists", input.Name),
+						Name:    input.Name,
+					},
+				},
+			}, nil
+		}
+
 		return nil, err
 	}
 

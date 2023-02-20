@@ -835,14 +835,11 @@ func (ec *executionContext) _CreateUserPayload_user(ctx context.Context, field g
 		return graphql.Null
 	}
 	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
 		return graphql.Null
 	}
 	res := resTmp.(*model.User)
 	fc.Result = res
-	return ec.marshalNUser2ᚖgithubᚗcomᚋtaxioᚋgqlgenᚑentᚑtodoᚋgraphᚋmodelᚐUser(ctx, field.Selections, res)
+	return ec.marshalOUser2ᚖgithubᚗcomᚋtaxioᚋgqlgenᚑentᚑtodoᚋgraphᚋmodelᚐUser(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CreateUserPayload_user(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -4661,9 +4658,6 @@ func (ec *executionContext) _CreateUserPayload(ctx context.Context, sel ast.Sele
 
 			out.Values[i] = ec._CreateUserPayload_user(ctx, field, obj)
 
-			if out.Values[i] == graphql.Null {
-				invalids++
-			}
 		case "errors":
 
 			out.Values[i] = ec._CreateUserPayload_errors(ctx, field, obj)
