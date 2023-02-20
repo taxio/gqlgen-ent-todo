@@ -22,7 +22,7 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.CreateUse
 		return nil, err
 	}
 
-	nodeId, err := encodeNodeId("User", newUser.ID)
+	nodeId, err := encodeNodeId(ModelTypeUser, newUser.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -50,7 +50,7 @@ func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error
 		return nil, err
 	}
 
-	nodeId, err := encodeNodeId("User", user.ID)
+	nodeId, err := encodeNodeId(ModelTypeUser, user.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -85,7 +85,7 @@ func (r *queryResolver) Users(ctx context.Context, first *int, after *string) (*
 
 	edges := make([]*model.UserEdge, 0, len(users))
 	for _, user := range users {
-		nodeId, err := encodeNodeId("User", user.ID)
+		nodeId, err := encodeNodeId(ModelTypeUser, user.ID)
 		if err != nil {
 			return nil, err
 		}
@@ -148,7 +148,7 @@ func (r *userResolver) Todos(ctx context.Context, obj *model.User, first *int, a
 
 	edges := make([]*model.TodoEdge, 0, len(todos))
 	for _, todo := range todos {
-		nodeId, err := encodeNodeId("Todo", todo.ID)
+		nodeId, err := encodeNodeId(ModelTypeTodo, todo.ID)
 		if err != nil {
 			return nil, err
 		}

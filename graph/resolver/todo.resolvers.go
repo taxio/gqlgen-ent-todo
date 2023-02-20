@@ -29,7 +29,7 @@ func (r *mutationResolver) CreateTodo(ctx context.Context, input model.CreateTod
 		return nil, err
 	}
 
-	nodeID, err := encodeNodeId("Todo", todo.ID)
+	nodeID, err := encodeNodeId(ModelTypeTodo, todo.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -48,7 +48,7 @@ func (r *mutationResolver) UpdateTodo(ctx context.Context, input model.UpdateTod
 	if err != nil {
 		return nil, err
 	}
-	nodeID, err := encodeNodeId("Todo", todo.ID)
+	nodeID, err := encodeNodeId(ModelTypeTodo, todo.ID)
 	return &model.UpdateTodoPayload{
 		Todo: &model.Todo{ID: nodeID, Content: todo.Content, Done: todo.Done},
 	}, nil
@@ -67,7 +67,7 @@ func (r *queryResolver) Todo(ctx context.Context, id string) (*model.Todo, error
 		}
 		return nil, err
 	}
-	nodeID, err := encodeNodeId("Todo", todo.ID)
+	nodeID, err := encodeNodeId(ModelTypeTodo, todo.ID)
 	return &model.Todo{
 		ID:      nodeID,
 		Content: todo.Content,
@@ -88,7 +88,7 @@ func (r *todoResolver) Owner(ctx context.Context, obj *model.Todo) (*model.User,
 	if err != nil {
 		return nil, err
 	}
-	nodeID, err := encodeNodeId("User", owner.ID)
+	nodeID, err := encodeNodeId(ModelTypeUser, owner.ID)
 	return &model.User{
 		ID:   nodeID,
 		Name: owner.Name,
