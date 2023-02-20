@@ -1,0 +1,42 @@
+type User implements Node {
+    id: ID!
+    name: String!
+
+    todos(first: Int, after: String): TodoConnection!
+}
+
+type UserEdge {
+    node: User!
+    cursor: String!
+}
+
+type UserConnection {
+    edges: [UserEdge!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+extend type Query {
+    user(id: ID!): User
+    users(first: Int, after: String): UserConnection!
+}
+
+input CreateUserInput {
+    name: String!
+}
+
+type CreateUserPayload {
+    user: User!
+    errors: [CreateUserError!]!
+}
+
+union CreateUserError = UsernameAlreadyExistsError
+
+type UsernameAlreadyExistsError implements Error {
+    message: String!
+    name: String!
+}
+
+extend type Mutation {
+    createUser(input: CreateUserInput!): CreateUserPayload!
+}

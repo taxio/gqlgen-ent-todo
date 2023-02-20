@@ -6,6 +6,9 @@ require (
 	entgo.io/ent v0.11.8
 	github.com/99designs/gqlgen v0.17.24
 	github.com/go-sql-driver/mysql v1.7.0
+	github.com/graph-gophers/dataloader v5.0.0+incompatible
+	github.com/jaswdr/faker v1.16.0
+	github.com/opentracing/opentracing-go v1.2.0
 	github.com/vektah/gqlparser/v2 v2.5.1
 )
 
@@ -16,7 +19,7 @@ require (
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
 	github.com/go-openapi/inflect v0.19.0 // indirect
-	github.com/google/go-cmp v0.5.6 // indirect
+	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/hashicorp/golang-lru v0.5.4 // indirect
@@ -37,7 +40,7 @@ require (
 	golang.org/x/mod v0.7.0 // indirect
 	golang.org/x/sys v0.5.0 // indirect
 	golang.org/x/text v0.7.0 // indirect
-	golang.org/x/tools v0.3.1-0.20221202221704-aa9f4b2f3d57 // indirect
+	golang.org/x/tools v0.4.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

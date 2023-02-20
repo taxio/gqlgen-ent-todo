@@ -1,0 +1,16 @@
+interface Node {
+    id: ID!
+}
+
+interface Error {
+    message: String!
+}
+
+type PageInfo {
+    hasNextPage: Boolean!
+    endCursor: String
+}
+
+type Query
+
+type Mutation

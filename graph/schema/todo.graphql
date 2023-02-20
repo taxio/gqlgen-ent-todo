@@ -1,0 +1,60 @@
+type Todo implements Node {
+    id: ID!
+    content: String!
+    done: Boolean!
+    owner: User!
+}
+
+type TodoEdge {
+    node: Todo!
+    cursor: String!
+}
+
+type TodoConnection {
+    edges: [TodoEdge!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+extend type Query {
+    todo(id: ID!): Todo!
+}
+
+input CreateTodoInput {
+    userId: ID!
+    content: String!
+}
+
+type CreateTodoPayload {
+    todo: Todo!
+    errors: [CreateTodoError!]!
+}
+
+union CreateTodoError = UnknownUserError
+
+type UnknownUserError implements Error {
+    message: String!
+    userId: ID!
+}
+
+input UpdateTodoInput {
+    id: ID!
+    content: String!
+    done: Boolean!
+}
+
+type UpdateTodoPayload {
+    todo: Todo!
+    errors: [UpdateTodoError!]!
+}
+
+union UpdateTodoError = TodoNotFoundError
+
+type TodoNotFoundError implements Error {
+    message: String!
+}
+
+extend type Mutation {
+    createTodo(input: CreateTodoInput!): CreateTodoPayload!
+    updateTodo(input: UpdateTodoInput!): UpdateTodoPayload!
+}
