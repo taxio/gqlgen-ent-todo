@@ -1,5 +1,4 @@
 # Example GraphQL Server by gqlgen and ent
-
 Setup `.env`:
 ```zsh
 copy .env.example .env
@@ -8,12 +7,12 @@ copy .env.example .env
 
 Install tools to `./bin`:
 ```zsh
-make generate-tools
+go generate ./tools.go
 ```
 
 DB Migration:
 ```zsh
-make migrate-db
+go run cmd/migrate-db/main.go
 ```
 
 Create Dummy Data:
@@ -27,3 +26,14 @@ go run server.gp
 ```
 
 Access GraphiQL Client: http://localhost:8080
+
+### Others
+regenerate ent:
+```zsh
+./bin/ent generate ./ent/schema
+```
+
+regenerate gqlgen:
+```zsh
+./bin/gqlgen
+```
